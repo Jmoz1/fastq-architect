@@ -1,0 +1,34 @@
+# --- Datos Genómicos (Pesados/Privados) ---
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.sam
+*.bam
+*.bai
+*.vcf
+
+# --- Resultados del Orquestador ---
+# Ignoramos las carpetas de salida de pacientes para mantener el repo limpio
+STRESS_TEST/
+PACIENTE_CORRUPTO/
+ERR013140/
+
+# --- Logs y Reportes Temporales ---
+*.log
+*.html
+*.json
+
+# --- Índices de Referencia (BWA/Fasta) ---
+*.fa
+*.fasta
+*.amb
+*.ann
+*.bwt
+*.pac
+*.sa
+
+# --- Entornos y Sistema ---
+.venv/
+__pycache__/
+.DS_Store
