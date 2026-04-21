@@ -1,22 +1,18 @@
-# 🧬 Fastq-Architect v7.0 (Clinical & Swarm Edition)
-
-**Orquestador de Eficiencia Computacional y Hardware-Aware (OE-HA)** para el procesamiento masivo de datos genómicos con trazabilidad integral.
-
-## 🌟 Propósito
-Este sistema automatiza la purificación de archivos FASTQ, detectando de forma autónoma la topología de la secuencia (Short-Read vs Long-Read) y gestionando la carga de trabajo sobre arquitecturas multi-hilo (optimizado para Ryzen Zen 4). La versión 7.0 introduce estándares clínicos de registro y normalización.
-
-## 🚀 Capacidades de Ingeniería (v7.0)
-- **Trazabilidad Maestra (Logging):** Generación automática de `orquestador_master.log`. Un registro inmutable de cada éxito, fallo y decisión del sistema para auditorías posteriores.
-- **Normalización de IDs por Regex:** Uso de expresiones regulares para limpiar sufijos técnicos de máquinas Illumina (ej. `_L001_R1_001`) y obtener el ID biológico puro del paciente.
-- **Modo Enjambre (Batch):** Escaneo recursivo de directorios para el procesamiento desatendido de cohortes completas de pacientes.
-- **Auditoría de Almacenamiento Pre-vuelo:** Suma el peso de la cola de trabajo y verifica el espacio libre en disco para prevenir colapsos por I/O Overflow.
-- **Conciencia de Hardware:** Ajuste dinámico de hilos (threads) basado en la CPU del sistema anfitrión.
-
-## 🛠️ Requisitos del Ecosistema
-- `fastp` (Motor C++ para Short-Reads)
-- `chopper` (Motor Rust para Long-Reads)
-- `python` (>= 3.6)
-
-```bash
-# Instalación recomendada
-micromamba install fastp chopper -c conda-forge -c bioconda -c defaults
+🧬 Fastq-Architect v8.0: Clinical-Grade Preprocessing
+Orquestador de Eficiencia Computacional y Hardware-Aware (OE-HA) para Medicina de Precisión.
+Fastq-Architect es un framework de pre-procesamiento genómico diseñado para transformar datos crudos de secuenciación (FASTQ) en datasets de alta fidelidad, listos para el análisis de variantes clínicas. 
+Optimizado para arquitecturas Zen4 (Ryzen 8845HS) bajo Arch Linux, el sistema prioriza la integridad del dato y la eficiencia termodinámica del cómputo.
+🚀 Capacidades de Ingeniería Superior (v8.0)1. Motor Multimodal Inteligente
+Detección autónoma de topología de secuencia mediante análisis de entropía en los primeros 400 registros.
+Short-Read (Illumina): Ejecución nativa vía fastp (C++) con extracción de métricas Q30.
+Long-Read (Oxford Nanopore): Curación via chopper (Rust) optimizada para lecturas ultra-largas y filtrado de calidad $Q > 10$.2.
+Arquitectura de Enjambre (Swarm Mode)Gestión de hilos dinámica basada en la carga de trabajo y el hardware anfitrión. 
+El sistema calcula el equilibrio óptimo de hilos por paciente para maximizar el throughput sin colapsar la memoria caché del procesador.
+Rigor Clínico y Trazabilidad
+Clinical QC Metrics: No solo limpia; audita. Genera reportes de supervivencia de reads y tasas de Q30, esenciales para la validación diagnóstica.
+Type Hinting & Robustez: Reescrito íntegramente en Python 3.12+ con tipado estático para eliminar errores de estado en tiempo de ejecución.
+Seguridad de I/O: Sistema de auditoría pre-vuelo que verifica el espacio en disco mediante el cálculo del factor de expansión genómica ($Bytes \times 3$).
+🛠️ Stack Tecnológico y Requisitos
+ComponenteRolLenguaje / FuentefastpMotor de filtrado Short-ReadsC++ / BiocondachopperMotor de filtrado Long-ReadsRust / BiocondaPython 3.12+Orquestador y Lógica de NegocioPSF / Arch RepoConcurrent.FuturesParalelización a nivel de procesoStandard LibInstalación de PrecisionBash# 
+Entorno recomendado mediante Micromamba
+micromamba create -n variant_env fastp chopper python=3.12 -c bioconda -c conda-forge
